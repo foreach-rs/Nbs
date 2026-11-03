@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://communicationoffice.nbs.rs" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://communicationoffice.nbs.rs" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://communicationoffice.nbs.rs">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetServiceVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
+      <s:complexType name="AuthenticationHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LicenceID" type="s1:guid" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetExchangeRateListCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateListCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetExchangeRateListCountResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startItemNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="endItemNumber" nillable="true" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateListComment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListID" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateListCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateListCommentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateListType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateListTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateListTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByCurrency">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateFrom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByCurrencyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateByCurrencyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateByDateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByListNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListNumber" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="year" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByListNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateByListNumberResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentExchangeRateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentExchangeRateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentExchangeRateListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentExchangeRate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentExchangeRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentExchangeRateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentExchangeRateByRateType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rateType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentExchangeRateByRateTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCurrentExchangeRateByRateTypeResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByRateType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="rateType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByRateTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetExchangeRateByRateTypeResult" type="s:decimal" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateRsdEur">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="typeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateRsdEurResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateRsdEurResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateRsdEurByPeriod">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dateFrom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="typeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateRsdEurByPeriodResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateRsdEurByPeriodResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrentExchangeRateRsdEur">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCurrentExchangeRateRsdEurResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrentExchangeRateRsdEurResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateRsdEurType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="typeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateRsdEurTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateRsdEurTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByCurrencyExtended">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateFrom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="exchangeRateListTypeID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isForAllDays" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateByCurrencyExtendedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateByCurrencyExtendedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateAverage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateFrom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetExchangeRateAverageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetExchangeRateAverageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetServiceVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceVersionAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateListCount" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateListCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListCountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateList" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateListComment" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateListCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListCommentAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateListType" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateListTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateListTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByCurrencySoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByCurrency" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByCurrencySoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByCurrencyAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByDate" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByDateAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByListNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByListNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByListNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByListNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByListNumberAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRateList" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateListAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRate" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateByRateTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRateByRateType" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateByRateTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRateByRateTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateByRateTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByRateTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByRateType" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByRateTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByRateTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByRateTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateRsdEur" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateRsdEurResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurByPeriodSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateRsdEurByPeriod" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurByPeriodSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateRsdEurByPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurByPeriodAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateRsdEurSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRateRsdEur" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateRsdEurSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrentExchangeRateRsdEurResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrentExchangeRateRsdEurAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateRsdEurType" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateRsdEurTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateRsdEurTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByCurrencyExtendedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByCurrencyExtended" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByCurrencyExtendedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateByCurrencyExtendedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateByCurrencyExtendedAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateAverageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateAverage" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateAverageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetExchangeRateAverageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetExchangeRateAverageAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:portType name="ExchangeRateXmlServiceSoap">
+    <wsdl:operation name="GetServiceVersion">
+      <wsdl:input message="tns:GetServiceVersionSoapIn" />
+      <wsdl:output message="tns:GetServiceVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListCount">
+      <wsdl:input message="tns:GetExchangeRateListCountSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateListCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateList">
+      <wsdl:input message="tns:GetExchangeRateListSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListComment">
+      <wsdl:input message="tns:GetExchangeRateListCommentSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateListCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListType">
+      <wsdl:input message="tns:GetExchangeRateListTypeSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateListTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByCurrency">
+      <wsdl:input message="tns:GetExchangeRateByCurrencySoapIn" />
+      <wsdl:output message="tns:GetExchangeRateByCurrencySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByDate">
+      <wsdl:input message="tns:GetExchangeRateByDateSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateByDateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByListNumber">
+      <wsdl:input message="tns:GetExchangeRateByListNumberSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateByListNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateList">
+      <wsdl:input message="tns:GetCurrentExchangeRateListSoapIn" />
+      <wsdl:output message="tns:GetCurrentExchangeRateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRate">
+      <wsdl:input message="tns:GetCurrentExchangeRateSoapIn" />
+      <wsdl:output message="tns:GetCurrentExchangeRateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateByRateType">
+      <wsdl:input message="tns:GetCurrentExchangeRateByRateTypeSoapIn" />
+      <wsdl:output message="tns:GetCurrentExchangeRateByRateTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByRateType">
+      <wsdl:input message="tns:GetExchangeRateByRateTypeSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateByRateTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEur">
+      <wsdl:input message="tns:GetExchangeRateRsdEurSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateRsdEurSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEurByPeriod">
+      <wsdl:input message="tns:GetExchangeRateRsdEurByPeriodSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateRsdEurByPeriodSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateRsdEur">
+      <wsdl:input message="tns:GetCurrentExchangeRateRsdEurSoapIn" />
+      <wsdl:output message="tns:GetCurrentExchangeRateRsdEurSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEurType">
+      <wsdl:input message="tns:GetExchangeRateRsdEurTypeSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateRsdEurTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByCurrencyExtended">
+      <wsdl:input message="tns:GetExchangeRateByCurrencyExtendedSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateByCurrencyExtendedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateAverage">
+      <wsdl:input message="tns:GetExchangeRateAverageSoapIn" />
+      <wsdl:output message="tns:GetExchangeRateAverageSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ExchangeRateXmlServiceSoap" type="tns:ExchangeRateXmlServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetServiceVersionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListCount">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateListCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateListCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateList">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateListAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListComment">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateListComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateListCommentAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateListType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateListTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByCurrency">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateByCurrencyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByDate">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateByDateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByListNumber">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByListNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateByListNumberAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateList">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrentExchangeRateListAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRate">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrentExchangeRateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateByRateType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRateByRateType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrentExchangeRateByRateTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByRateType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByRateType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateByRateTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEur">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateRsdEur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateRsdEurAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEurByPeriod">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateRsdEurByPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateRsdEurByPeriodAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateRsdEur">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRateRsdEur" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrentExchangeRateRsdEurAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEurType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateRsdEurType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateRsdEurTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByCurrencyExtended">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByCurrencyExtended" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateByCurrencyExtendedAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateAverage">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateAverage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetExchangeRateAverageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ExchangeRateXmlServiceSoap12" type="tns:ExchangeRateXmlServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetServiceVersionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListCount">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateListCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateListCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateList">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateListAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListComment">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateListComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateListCommentAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateListType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateListType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateListTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByCurrency">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByCurrency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateByCurrencyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByDate">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateByDateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByListNumber">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByListNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateByListNumberAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateList">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrentExchangeRateListAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRate">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrentExchangeRateAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateByRateType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRateByRateType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrentExchangeRateByRateTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByRateType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByRateType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateByRateTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEur">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateRsdEur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateRsdEurAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEurByPeriod">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateRsdEurByPeriod" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateRsdEurByPeriodAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentExchangeRateRsdEur">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrentExchangeRateRsdEur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrentExchangeRateRsdEurAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateRsdEurType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateRsdEurType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateRsdEurTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateByCurrencyExtended">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateByCurrencyExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateByCurrencyExtendedAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetExchangeRateAverage">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetExchangeRateAverage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetExchangeRateAverageAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ExchangeRateXmlService">
+    <wsdl:port name="ExchangeRateXmlServiceSoap" binding="tns:ExchangeRateXmlServiceSoap">
+      <soap:address location="https://webservices.nbs.rs/CommunicationOfficeService1_0/ExchangeRateXmlService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ExchangeRateXmlServiceSoap12" binding="tns:ExchangeRateXmlServiceSoap12">
+      <soap12:address location="https://webservices.nbs.rs/CommunicationOfficeService1_0/ExchangeRateXmlService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

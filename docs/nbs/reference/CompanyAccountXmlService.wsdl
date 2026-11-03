@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://communicationoffice.nbs.rs" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://communicationoffice.nbs.rs" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://communicationoffice.nbs.rs">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetServiceVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
+      <s:complexType name="AuthenticationHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LicenceID" type="s1:guid" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetCompanyAccountCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="taxIdentificationNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="controlNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCompanyAccountCountResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="taxIdentificationNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="controlNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startItemNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="endItemNumber" nillable="true" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyAccountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountByNationalIdentificationNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountByNationalIdentificationNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyAccountByNationalIdentificationNumberResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyAccountStatusID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyAccountStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyAccountTypeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyAccountTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountUpdatedCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dateFrom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountUpdatedCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCompanyAccountUpdatedCountResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountTop">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="taxIdentificationNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="accountNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="controlNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountTopResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyAccountTopResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountUpdated">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dateFrom" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateTo" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startItemNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="endItemNumber" nillable="true" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountUpdatedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyAccountUpdatedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountOriginByNationalIdNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyAccountOriginByNationalIdNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyAccountOriginByNationalIdNumberResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetServiceVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceVersionAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountCount" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountCountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccount" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountByNationalIdentificationNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountByNationalIdentificationNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountByNationalIdentificationNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountByNationalIdentificationNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountByNationalIdentificationNumberAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountStatusAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountType" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountUpdatedCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountUpdatedCount" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountUpdatedCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountUpdatedCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountUpdatedCountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountTopSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountTop" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountTopSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountTopResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountTopAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountUpdatedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountUpdated" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountUpdatedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountUpdatedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountUpdatedAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountOriginByNationalIdNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountOriginByNationalIdNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountOriginByNationalIdNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyAccountOriginByNationalIdNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAccountOriginByNationalIdNumberAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:portType name="CompanyAccountXmlServiceSoap">
+    <wsdl:operation name="GetServiceVersion">
+      <wsdl:input message="tns:GetServiceVersionSoapIn" />
+      <wsdl:output message="tns:GetServiceVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountCount">
+      <wsdl:input message="tns:GetCompanyAccountCountSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccount">
+      <wsdl:input message="tns:GetCompanyAccountSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountByNationalIdentificationNumber">
+      <wsdl:input message="tns:GetCompanyAccountByNationalIdentificationNumberSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountByNationalIdentificationNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountStatus">
+      <wsdl:input message="tns:GetCompanyAccountStatusSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountType">
+      <wsdl:input message="tns:GetCompanyAccountTypeSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountUpdatedCount">
+      <wsdl:input message="tns:GetCompanyAccountUpdatedCountSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountUpdatedCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountTop">
+      <wsdl:input message="tns:GetCompanyAccountTopSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountTopSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountUpdated">
+      <wsdl:input message="tns:GetCompanyAccountUpdatedSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountUpdatedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountOriginByNationalIdNumber">
+      <wsdl:input message="tns:GetCompanyAccountOriginByNationalIdNumberSoapIn" />
+      <wsdl:output message="tns:GetCompanyAccountOriginByNationalIdNumberSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CompanyAccountXmlServiceSoap" type="tns:CompanyAccountXmlServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetServiceVersionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountCount">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccount">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountByNationalIdentificationNumber">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountByNationalIdentificationNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountByNationalIdentificationNumberAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountStatus">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountUpdatedCount">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountUpdatedCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountUpdatedCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountTop">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountTop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountTopAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountUpdated">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountUpdated" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountUpdatedAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountOriginByNationalIdNumber">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountOriginByNationalIdNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAccountOriginByNationalIdNumberAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CompanyAccountXmlServiceSoap12" type="tns:CompanyAccountXmlServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetServiceVersionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountCount">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccount">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountByNationalIdentificationNumber">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountByNationalIdentificationNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountByNationalIdentificationNumberAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountStatus">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountUpdatedCount">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountUpdatedCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountUpdatedCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountTop">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountTop" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountTopAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountUpdated">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountUpdated" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountUpdatedAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyAccountOriginByNationalIdNumber">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyAccountOriginByNationalIdNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAccountOriginByNationalIdNumberAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CompanyAccountXmlService">
+    <wsdl:port name="CompanyAccountXmlServiceSoap" binding="tns:CompanyAccountXmlServiceSoap">
+      <soap:address location="https://webservices.nbs.rs/CommunicationOfficeService1_0/CompanyAccountXmlService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CompanyAccountXmlServiceSoap12" binding="tns:CompanyAccountXmlServiceSoap12">
+      <soap12:address location="https://webservices.nbs.rs/CommunicationOfficeService1_0/CompanyAccountXmlService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

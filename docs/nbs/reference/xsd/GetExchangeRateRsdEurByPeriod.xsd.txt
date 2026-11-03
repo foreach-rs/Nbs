@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ExchangeRateDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="ExchangeRateDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ExchangeRateRsdEur">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Date" type="xs:dateTime" />
+              <xs:element name="TypeID" type="xs:int" />
+              <xs:element name="Amount" type="xs:decimal" />
+              <xs:element name="ValidityDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//ExchangeRateRsdEur" />
+      <xs:field xpath="Date" />
+      <xs:field xpath="TypeID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

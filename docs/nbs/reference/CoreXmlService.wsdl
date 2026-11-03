@@ -1,0 +1,1162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://communicationoffice.nbs.rs" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://communicationoffice.nbs.rs" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://communicationoffice.nbs.rs">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetServiceVersion">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetServiceVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
+      <s:complexType name="AuthenticationHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LicenceID" type="s1:guid" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetActivityCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="activityID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="activityCode" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActivityCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetActivityCountResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActivity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="activityID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="activityCode" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startItemNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="endItemNumber" nillable="true" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetActivityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetActivityResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBank">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bankID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="bankCode" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="taxIdentificationNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="date" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bankStatusID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="bankTypeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyCode" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="taxIdentificationNumber" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetCompanyCountResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompany">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="companyCode" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="city" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nationalIdentificationNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="taxIdentificationNumber" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startItemNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="endItemNumber" nillable="true" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyStatusID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="companyTypeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCompanyTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCompanyTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="countryID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="countryCode" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCodeNumChar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCodeAlfaChar3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCodeAlfaChar2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCountryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountryByCurrency">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencyCodeNumChar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencyCodeAlfaChar" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCountryByCurrencyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCountryByCurrencyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyConvertible">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="currencyGroupID" nillable="true" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyConvertibleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrencyConvertibleResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyGroupID" nillable="true" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrencyGroupResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyDenomination">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyDenominationID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="currencyDenominationCode" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="currencyID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="currencyDenominationStatusID" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="currencyDenominationTypeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyDenominationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrencyDenominationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyDenominationStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyDenominationStatusID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyDenominationStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrencyDenominationStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyDenominationType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyDenominationTypeID" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyDenominationTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrencyDenominationTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrency">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="currencyID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="currencyCode" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencyCodeNumChar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="currencyCodeAlfaChar" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrencyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyByCountry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="countryID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="countryCode" nillable="true" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCodeNumChar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCodeAlfaChar3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="countryCodeAlfaChar2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrencyByCountryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrencyByCountryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRegion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="regionID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="regionCode" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRegionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRegionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMunicipality">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="municipalityID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="municipalityCode" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMunicipalityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMunicipalityResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSettlementCount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="settlementID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="settlementCode" nillable="true" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSettlementCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSettlementCountResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSettlement">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="settlementID" nillable="true" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="settlementCode" nillable="true" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="startItemNumber" nillable="true" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="endItemNumber" nillable="true" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSettlementResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSettlementResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetServiceVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceVersionAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetActivityCount" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetActivityCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityCountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetActivitySoapIn">
+    <wsdl:part name="parameters" element="tns:GetActivity" />
+  </wsdl:message>
+  <wsdl:message name="GetActivitySoapOut">
+    <wsdl:part name="parameters" element="tns:GetActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetActivityAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetBankSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBank" />
+  </wsdl:message>
+  <wsdl:message name="GetBankSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetBankStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetBankStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankStatusAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetBankTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankType" />
+  </wsdl:message>
+  <wsdl:message name="GetBankTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyCount" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyCountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompany" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyStatusAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCompanyType" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCompanyTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCompanyTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCountrySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountry" />
+  </wsdl:message>
+  <wsdl:message name="GetCountrySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryByCurrencySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountryByCurrency" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryByCurrencySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountryByCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountryByCurrencyAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyConvertibleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrencyConvertible" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyConvertibleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyConvertibleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyConvertibleAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrencyGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyGroupAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrencyDenomination" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyDenominationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrencyDenominationStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyDenominationStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationStatusAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrencyDenominationType" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyDenominationTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyDenominationTypeAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrency" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyByCountrySoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrencyByCountry" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyByCountrySoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrencyByCountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrencyByCountryAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRegion" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRegionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRegionAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetMunicipalitySoapIn">
+    <wsdl:part name="parameters" element="tns:GetMunicipality" />
+  </wsdl:message>
+  <wsdl:message name="GetMunicipalitySoapOut">
+    <wsdl:part name="parameters" element="tns:GetMunicipalityResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMunicipalityAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSettlementCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSettlementCount" />
+  </wsdl:message>
+  <wsdl:message name="GetSettlementCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSettlementCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSettlementCountAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetSettlementSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSettlement" />
+  </wsdl:message>
+  <wsdl:message name="GetSettlementSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSettlementResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSettlementAuthenticationHeader">
+    <wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+  </wsdl:message>
+  <wsdl:portType name="CoreXmlServiceSoap">
+    <wsdl:operation name="GetServiceVersion">
+      <wsdl:input message="tns:GetServiceVersionSoapIn" />
+      <wsdl:output message="tns:GetServiceVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivityCount">
+      <wsdl:input message="tns:GetActivityCountSoapIn" />
+      <wsdl:output message="tns:GetActivityCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <wsdl:input message="tns:GetActivitySoapIn" />
+      <wsdl:output message="tns:GetActivitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBank">
+      <wsdl:input message="tns:GetBankSoapIn" />
+      <wsdl:output message="tns:GetBankSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankStatus">
+      <wsdl:input message="tns:GetBankStatusSoapIn" />
+      <wsdl:output message="tns:GetBankStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankType">
+      <wsdl:input message="tns:GetBankTypeSoapIn" />
+      <wsdl:output message="tns:GetBankTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCount">
+      <wsdl:input message="tns:GetCompanyCountSoapIn" />
+      <wsdl:output message="tns:GetCompanyCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompany">
+      <wsdl:input message="tns:GetCompanySoapIn" />
+      <wsdl:output message="tns:GetCompanySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyStatus">
+      <wsdl:input message="tns:GetCompanyStatusSoapIn" />
+      <wsdl:output message="tns:GetCompanyStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyType">
+      <wsdl:input message="tns:GetCompanyTypeSoapIn" />
+      <wsdl:output message="tns:GetCompanyTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <wsdl:input message="tns:GetCountrySoapIn" />
+      <wsdl:output message="tns:GetCountrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountryByCurrency">
+      <wsdl:input message="tns:GetCountryByCurrencySoapIn" />
+      <wsdl:output message="tns:GetCountryByCurrencySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyConvertible">
+      <wsdl:input message="tns:GetCurrencyConvertibleSoapIn" />
+      <wsdl:output message="tns:GetCurrencyConvertibleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyGroup">
+      <wsdl:input message="tns:GetCurrencyGroupSoapIn" />
+      <wsdl:output message="tns:GetCurrencyGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenomination">
+      <wsdl:input message="tns:GetCurrencyDenominationSoapIn" />
+      <wsdl:output message="tns:GetCurrencyDenominationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenominationStatus">
+      <wsdl:input message="tns:GetCurrencyDenominationStatusSoapIn" />
+      <wsdl:output message="tns:GetCurrencyDenominationStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenominationType">
+      <wsdl:input message="tns:GetCurrencyDenominationTypeSoapIn" />
+      <wsdl:output message="tns:GetCurrencyDenominationTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <wsdl:input message="tns:GetCurrencySoapIn" />
+      <wsdl:output message="tns:GetCurrencySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyByCountry">
+      <wsdl:input message="tns:GetCurrencyByCountrySoapIn" />
+      <wsdl:output message="tns:GetCurrencyByCountrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <wsdl:input message="tns:GetRegionSoapIn" />
+      <wsdl:output message="tns:GetRegionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMunicipality">
+      <wsdl:input message="tns:GetMunicipalitySoapIn" />
+      <wsdl:output message="tns:GetMunicipalitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSettlementCount">
+      <wsdl:input message="tns:GetSettlementCountSoapIn" />
+      <wsdl:output message="tns:GetSettlementCountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSettlement">
+      <wsdl:input message="tns:GetSettlementSoapIn" />
+      <wsdl:output message="tns:GetSettlementSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CoreXmlServiceSoap" type="tns:CoreXmlServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetServiceVersionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivityCount">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetActivityCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetActivityCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetActivityAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBank">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetBank" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBankAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankStatus">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetBankStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBankStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetBankType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetBankTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCount">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompany">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompany" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyStatus">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCompanyTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCountry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCountryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountryByCurrency">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCountryByCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCountryByCurrencyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyConvertible">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyConvertible" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencyConvertibleAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyGroup">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencyGroupAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenomination">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyDenomination" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencyDenominationAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenominationStatus">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyDenominationStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencyDenominationStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenominationType">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyDenominationType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencyDenominationTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyByCountry">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyByCountry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetCurrencyByCountryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetRegion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetRegionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMunicipality">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetMunicipality" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetMunicipalityAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSettlementCount">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetSettlementCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSettlementCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSettlement">
+      <soap:operation soapAction="http://communicationoffice.nbs.rs/GetSettlement" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetSettlementAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CoreXmlServiceSoap12" type="tns:CoreXmlServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetServiceVersion">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetServiceVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetServiceVersionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivityCount">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetActivityCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetActivityCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivity">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetActivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetActivityAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBank">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetBank" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBankAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankStatus">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetBankStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBankStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetBankType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetBankTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyCount">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompany">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompany" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyStatus">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCompanyType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCompanyType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCompanyTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountry">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCountry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCountryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountryByCurrency">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCountryByCurrency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCountryByCurrencyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyConvertible">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyConvertible" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencyConvertibleAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyGroup">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyGroup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencyGroupAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenomination">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyDenomination" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencyDenominationAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenominationStatus">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyDenominationStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencyDenominationStatusAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyDenominationType">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyDenominationType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencyDenominationTypeAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrency">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencyAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrencyByCountry">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetCurrencyByCountry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetCurrencyByCountryAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRegion">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetRegion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetRegionAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMunicipality">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetMunicipality" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetMunicipalityAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSettlementCount">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetSettlementCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSettlementCountAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSettlement">
+      <soap12:operation soapAction="http://communicationoffice.nbs.rs/GetSettlement" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetSettlementAuthenticationHeader" part="AuthenticationHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CoreXmlService">
+    <wsdl:port name="CoreXmlServiceSoap" binding="tns:CoreXmlServiceSoap">
+      <soap:address location="https://webservices.nbs.rs/CommunicationOfficeService1_0/CoreXmlService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CoreXmlServiceSoap12" binding="tns:CoreXmlServiceSoap12">
+      <soap12:address location="https://webservices.nbs.rs/CommunicationOfficeService1_0/CoreXmlService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

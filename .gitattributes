@@ -1,0 +1,4 @@
+# Normalise line endings: the sources arrived with a mix of CRLF and LF.
+* text=auto
+*.sh text eol=lf
+*.yml text eol=lf

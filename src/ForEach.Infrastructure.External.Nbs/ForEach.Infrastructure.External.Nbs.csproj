@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <!-- net8.0 as well as net10.0: nothing here needs anything newer than .NET 8, and a host
+             still on an LTS runtime should not have to upgrade to use it. -->
+        <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>ForEach.Infrastructure.External.Nbs</RootNamespace>
+
+        <!-- The doc comments are the library's manual; without this file none of them reach a
+             consumer's IntelliSense. A public member without one is a build warning on purpose. -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <!-- Packaged the same way as the Meta library, so neither is the special one. -->
+        <PackageId>ForEach.Infrastructure.External.Nbs</PackageId>
+        <Version>0.1.0</Version>
+        <Description>National Bank of Serbia client library: exchange rates and company account status.</Description>
+        <PackageTags>NBS;Serbia;ExchangeRates;CompanyAccounts;SOAP</PackageTags>
+        <PackageProjectUrl>https://github.com/foreach-rs/Nbs</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+        <!-- Validates that both target frameworks expose the same API. Once a version is
+             published, set <PackageValidationBaselineVersion> to it so a breaking change against
+             the released API fails the build instead of surprising a consumer. -->
+        <EnablePackageValidation>true</EnablePackageValidation>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+    <!--
+        No project references, and that is the point of the library rather than an oversight.
+
+        It knows nothing about HRC: not its entities, not FluentResults, not its settings binder.
+        A dependency on any of those would make "reusable in another solution" a claim rather than
+        a fact, and the adapter that maps NbsResult onto whatever a host uses is a dozen lines.
+    -->
+
+</Project>

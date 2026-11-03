@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ForEach.Infrastructure.External.Nbs/ForEach.Infrastructure.External.Nbs.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ForEach.Infrastructure.External.Nbs.IntegrationTests/ForEach.Infrastructure.External.Nbs.IntegrationTests.csproj" />
+    <Project Path="tests/ForEach.Infrastructure.External.Nbs.UnitTests/ForEach.Infrastructure.External.Nbs.UnitTests.csproj" />
+  </Folder>
+</Solution>

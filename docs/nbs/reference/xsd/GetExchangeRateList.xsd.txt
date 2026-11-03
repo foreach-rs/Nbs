@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="ExchangeRateDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="ExchangeRateDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ExchangeRateList">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ExchangeRateListID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" />
+              <xs:element name="ExchangeRateListNumber" type="xs:int" />
+              <xs:element name="Date" type="xs:dateTime" />
+              <xs:element name="CreateDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DateTo" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ExchangeRateListTypeID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//ExchangeRateList" />
+      <xs:field xpath="ExchangeRateListID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

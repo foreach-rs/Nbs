@@ -1,0 +1,69 @@
+name: Publish NuGet
+
+# A release is a tag: `git tag v0.2.0 && git push origin v0.2.0`.
+# The package version is taken from the tag, so the csproj never has to be edited to release.
+# Pushes to main only build and test (ci.yml); nothing reaches nuget.org without a tag.
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    # Trusted Publishing: no long-lived API key anywhere. The job asks GitHub for an OIDC token
+    # (id-token: write), NuGet/login exchanges it with nuget.org for an API key that lives one
+    # hour, and the push uses that. nuget.org accepts the token only if a Trusted Publishing
+    # policy on the account named in NUGET_USER lists this repository owner, this repository and
+    # this file name (publish.yml) — see README, "Releasing".
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Version from tag
+        id: version
+        run: echo "value=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - run: dotnet restore
+      - run: dotnet build -c Release --no-restore -p:Version=${{ steps.version.outputs.value }}
+      - run: dotnet test -c Release --no-build
+
+      - name: Pack
+        run: >
+          dotnet pack src/ForEach.Infrastructure.External.Nbs
+          -c Release --no-build -o packages
+          -p:Version=${{ steps.version.outputs.value }}
+          -p:RepositoryUrl=${{ github.server_url }}/${{ github.repository }}
+
+      # Requested right before the push, because the key it returns expires after an hour.
+      # NUGET_USER is a repository variable (Settings → Secrets and variables → Actions →
+      # Variables): the nuget.org profile name that owns the Trusted Publishing policy — the
+      # organisation's name when the policy is owned by the organisation.
+      - name: NuGet login (OIDC → temporary API key)
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: ${{ vars.NUGET_USER }}
+
+      # nuget.org accepts the .snupkg, which `dotnet nuget push` sends beside the .nupkg on its
+      # own. A version that is already there is skipped rather than failed, so re-running a
+      # release is harmless.
+      - name: Push to nuget.org
+        run: >
+          dotnet nuget push "packages/*.nupkg"
+          --source "https://api.nuget.org/v3/index.json"
+          --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
+          --skip-duplicate
+
+      - uses: actions/upload-artifact@v5
+        with:
+          name: packages
+          path: packages/*.*nupkg

@@ -1,0 +1,91 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="CompanyAccountDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="CompanyAccountDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CompanyAccountOrigin">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Account" msdata:ReadOnly="true" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BankCode" type="xs:long" />
+              <xs:element name="AccountNumber" type="xs:long" />
+              <xs:element name="ControlNumber" type="xs:int" />
+              <xs:element name="CompanyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NationalIdentificationNumber" type="xs:long" />
+              <xs:element name="TaxIdentificationNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="City" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="70" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MunicipalityCode" type="xs:int" minOccurs="0" />
+              <xs:element name="ActivityCode" type="xs:int" minOccurs="0" />
+              <xs:element name="MunicipalityName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ActivityName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BankName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CompanyAccountStatusID" type="xs:int" minOccurs="0" />
+              <xs:element name="CompanyAccountBlockadeStatusID" type="xs:int" minOccurs="0" />
+              <xs:element name="CompanyAccountTypeID" type="xs:int" minOccurs="0" />
+              <xs:element name="LegalUserTypeID" type="xs:int" minOccurs="0" />
+              <xs:element name="InitializationDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ChangeDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UpdateDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BankID" msdata:DataType="System.Guid, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//CompanyAccountOrigin" />
+      <xs:field xpath="BankCode" />
+      <xs:field xpath="AccountNumber" />
+      <xs:field xpath="ControlNumber" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <!--
+      The library's own tests, beside the library rather than inside the host's test projects.
+      It carries no reference to anything of HRC's, and neither does this: lifting both into
+      another solution is a copy of two folders.
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ForEach.Infrastructure.External.Nbs\ForEach.Infrastructure.External.Nbs.csproj" />
+  </ItemGroup>
+
+</Project>

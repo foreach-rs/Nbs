@@ -1,0 +1,23 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Same analyzer rules as HRC, so code moved between the two repositories keeps compiling the
+         same way. CA1307 is an error there and stays one here. -->
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <WarningsAsErrors>$(WarningsAsErrors);CA1307</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Package metadata shared by everything packable in this repository. The version itself is
+         not set here: the publish workflow passes it from the git tag (v1.2.3 -> 1.2.3), and the
+         csproj's <Version> is only the fallback for a local `dotnet pack`. -->
+    <Authors>ForEach</Authors>
+    <Company>ForEach</Company>
+    <Copyright>Copyright © ForEach</Copyright>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+</Project>
