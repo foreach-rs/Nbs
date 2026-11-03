@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Xml.Linq;
 
 namespace ForEach.Infrastructure.External.Nbs;
@@ -30,6 +31,12 @@ public sealed record NbsError(int Code, string Type, string Message)
     /// </summary>
     public NbsFailureKind Kind => Code switch
     {
+        // Decided here rather than by NBS (no request was made, or the answer was a SOAP fault
+        // with no ErrorInfo). A client fault — a malformed request, a licence GUID that is not
+        // one — repeats until somebody changes the settings, exactly like error 10.
+        0 when Type == NotConfiguredType || IsClientFault => NbsFailureKind.Configuration,
+        0 when Type == InvalidRequestType => NbsFailureKind.CallerMistake,
+
         10 or 50 or 60 or 70 => NbsFailureKind.Configuration,
         30 or 40 => NbsFailureKind.Transient,
         20 => NbsFailureKind.CallerMistake,
@@ -39,6 +46,25 @@ public sealed record NbsError(int Code, string Type, string Message)
         // the data until somebody notices.
         _ => NbsFailureKind.Transient
     };
+
+    private const string NotConfiguredType = "NotConfigured";
+    private const string InvalidRequestType = "InvalidRequest";
+
+    /// <summary>SOAP 1.1 fault codes name the party at fault: `soap:Client`, `soap:Server`.</summary>
+    private bool IsClientFault =>
+        Type.Split(':')[^1].StartsWith("Client", StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// The credentials are missing or cannot be sent. Status zero because there was no request;
+    /// a Configuration failure, since nothing the machine does next changes it.
+    /// </summary>
+    public static NbsError NotConfigured(string message) => new(0, NotConfiguredType, message);
+
+    /// <summary>
+    /// The request could not be built from what the caller passed — a character XML cannot carry.
+    /// A CallerMistake: the same input fails the same way.
+    /// </summary>
+    public static NbsError InvalidRequest(string message) => new(0, InvalidRequestType, message);
 
     /// <summary>The fault as one line: code, type and message.</summary>
     public override string ToString() => $"NBS {Code} {Type}: {Message}";
@@ -66,12 +92,28 @@ public sealed record NbsError(int Code, string Type, string Message)
 
         var info = document.Descendants().FirstOrDefault(e => e.Name.LocalName == "ErrorInfo");
 
-        if (info is null) return null;
+        if (info is null)
+        {
+            // A SOAP fault the service did not fill in its own detail for: a request ASP.NET
+            // rejected before it reached the service (an unknown SOAPAction, a body that does not
+            // match the WSDL, a licence GUID that is not a GUID). It is still a refusal, and
+            // reading it as "no Result element" would be retried for ever as a transport problem.
+            var fault = document.Descendants().FirstOrDefault(e => e.Name.LocalName == "Fault");
+
+            return fault is null
+                ? null
+                : new NbsError(
+                    0,
+                    Child(fault, "faultcode") ?? "SoapFault",
+                    Child(fault, "faultstring") ?? "");
+        }
 
         var code = Child(info, "ErrorCode");
 
         return new NbsError(
-            int.TryParse(code, out var parsed) ? parsed : 0,
+            int.TryParse(code, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsed)
+                ? parsed
+                : 0,
             Child(info, "ErrorType") ?? "UnknownError",
             Child(info, "ErrorMessage") ?? "");
     }

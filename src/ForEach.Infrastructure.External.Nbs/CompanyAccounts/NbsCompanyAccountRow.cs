@@ -129,13 +129,14 @@ public sealed record NbsCompanyAccountRow(
             : null;
 
     /// <summary>
-    /// A timestamp, invariant and round-trippable. These come back as `xs:dateTime` — unlike the
+    /// A timestamp, invariant and always UTC: a value with an offset is converted, one without is
+    /// taken as UTC, so the Kind a caller gets back does not depend on how NBS happened to write it. These come back as `xs:dateTime` — unlike the
     /// rate list's dates, which are `dd.MM.yyyy` strings. Two conventions in one API is NBS's, and
     /// parsing one with the other's rules is how a delta sync starts asking for the wrong window.
     /// </summary>
     private static DateTime? Timestamp(XElement row, string name) =>
         DateTime.TryParse(Text(row, name), CultureInfo.InvariantCulture,
-            DateTimeStyles.RoundtripKind, out var value)
+            DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out var value)
             ? value
             : null;
 }

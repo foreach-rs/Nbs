@@ -47,16 +47,14 @@ public sealed class NbsExchangeRateClient(HttpClient httpClient, NbsCredentials 
         DateOnly date, int listTypeId, CancellationToken ct = default)
     {
         if (!credentials.IsConfigured)
-            return NbsResult<List<NbsExchangeRateRow>>.Transport(
-                "NBS credentials are not configured.");
+            return NbsResult<List<NbsExchangeRateRow>>.Fail(
+                NbsError.NotConfigured("NBS credentials are not configured."));
 
         const string operation = "GetExchangeRateByDate";
 
-        var envelope = NbsSoapEnvelope.Build(operation, credentials,
+        var response = await PostAsync(operation, ct,
             ("date", NbsSoapEnvelope.Date(date)),
             ("exchangeRateListTypeID", listTypeId.ToString(System.Globalization.CultureInfo.InvariantCulture)));
-
-        var response = await PostAsync(operation, envelope, ct);
 
         if (!response.IsSuccess)
             return response.Error is { } error
@@ -81,18 +79,16 @@ public sealed class NbsExchangeRateClient(HttpClient httpClient, NbsCredentials 
         CancellationToken ct = default)
     {
         if (!credentials.IsConfigured)
-            return NbsResult<List<NbsExchangeRateRow>>.Transport(
-                "NBS credentials are not configured.");
+            return NbsResult<List<NbsExchangeRateRow>>.Fail(
+                NbsError.NotConfigured("NBS credentials are not configured."));
 
         const string operation = "GetExchangeRateByCurrency";
 
-        var envelope = NbsSoapEnvelope.Build(operation, credentials,
+        var response = await PostAsync(operation, ct,
             ("currencyCode", numericCurrencyCode.ToString(System.Globalization.CultureInfo.InvariantCulture)),
             ("dateFrom", NbsSoapEnvelope.Date(from)),
             ("dateTo", NbsSoapEnvelope.Date(to)),
             ("exchangeRateListTypeID", listTypeId.ToString(System.Globalization.CultureInfo.InvariantCulture)));
-
-        var response = await PostAsync(operation, envelope, ct);
 
         if (!response.IsSuccess)
             return response.Error is { } error
@@ -109,10 +105,14 @@ public sealed class NbsExchangeRateClient(HttpClient httpClient, NbsCredentials 
     /// would throw away the service's own words in favour of "the server returned 500".
     /// </summary>
     private async Task<NbsResult<string>> PostAsync(
-        string operation, string envelope, CancellationToken ct)
+        string operation, CancellationToken ct, params (string Name, string? Value)[] parameters)
     {
         try
         {
+            // Built inside the try: a control character in a credential or a filter is not
+            // something XML can carry, and it is a result for the host to show, not an exception.
+            var envelope = NbsSoapEnvelope.Build(operation, credentials, parameters);
+
             using var request = new HttpRequestMessage(
                 HttpMethod.Post, credentials.EndpointFor(Service))
             {
@@ -135,6 +135,16 @@ public sealed class NbsExchangeRateClient(HttpClient httpClient, NbsCredentials 
         catch (HttpRequestException ex)
         {
             return NbsResult<string>.Transport(ex.Message);
+        }
+        catch (UriFormatException ex)
+        {
+            return NbsResult<string>.Fail(
+                NbsError.NotConfigured($"The NBS address is not usable: {ex.Message}"));
+        }
+        catch (Exception ex) when (ex is ArgumentException or System.Xml.XmlException)
+        {
+            return NbsResult<string>.Fail(NbsError.InvalidRequest(
+                $"The request could not be built — check the credentials and filters for control characters: {ex.Message}"));
         }
     }
 }

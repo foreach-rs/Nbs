@@ -90,11 +90,10 @@ public sealed class NbsCompanyAccountClient(HttpClient httpClient, NbsCredential
         string operation, CancellationToken ct, params (string Name, string? Value)[] parameters)
     {
         if (!credentials.IsConfigured)
-            return NbsResult<List<NbsCompanyAccountRow>>.Transport(
-                "NBS credentials are not configured.");
+            return NbsResult<List<NbsCompanyAccountRow>>.Fail(
+                NbsError.NotConfigured("NBS credentials are not configured."));
 
-        var response = await PostAsync(
-            operation, NbsSoapEnvelope.Build(operation, credentials, parameters), ct);
+        var response = await PostAsync(operation, ct, parameters);
 
         if (!response.IsSuccess)
             return response.Error is { } error
@@ -107,10 +106,14 @@ public sealed class NbsCompanyAccountClient(HttpClient httpClient, NbsCredential
 
     /// <inheritdoc cref="ExchangeRates.NbsExchangeRateClient"/>
     private async Task<NbsResult<string>> PostAsync(
-        string operation, string envelope, CancellationToken ct)
+        string operation, CancellationToken ct, params (string Name, string? Value)[] parameters)
     {
         try
         {
+            // Built inside the try: a control character in a credential or a filter is not
+            // something XML can carry, and it is a result for the host to show, not an exception.
+            var envelope = NbsSoapEnvelope.Build(operation, credentials, parameters);
+
             using var request = new HttpRequestMessage(
                 HttpMethod.Post, credentials.EndpointFor(Service))
             {
@@ -130,6 +133,16 @@ public sealed class NbsCompanyAccountClient(HttpClient httpClient, NbsCredential
         catch (HttpRequestException ex)
         {
             return NbsResult<string>.Transport(ex.Message);
+        }
+        catch (UriFormatException ex)
+        {
+            return NbsResult<string>.Fail(
+                NbsError.NotConfigured($"The NBS address is not usable: {ex.Message}"));
+        }
+        catch (Exception ex) when (ex is ArgumentException or System.Xml.XmlException)
+        {
+            return NbsResult<string>.Fail(NbsError.InvalidRequest(
+                $"The request could not be built — check the credentials and filters for control characters: {ex.Message}"));
         }
     }
 }

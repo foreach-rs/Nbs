@@ -95,7 +95,23 @@ public class NbsCompanyAccountRowTests
         var row = Assert.Single(NbsCompanyAccountRow.Parse(
             Document(Row(updateDate: "2026-08-19T14:32:05"))));
 
-        Assert.Equal(new DateTime(2026, 8, 19, 14, 32, 5, DateTimeKind.Unspecified), row.UpdateDate);
+        // Always UTC, so what a caller gets does not depend on how NBS happened to write it.
+        Assert.Equal(new DateTime(2026, 8, 19, 14, 32, 5, DateTimeKind.Utc), row.UpdateDate);
+        Assert.Equal(DateTimeKind.Utc, row.UpdateDate!.Value.Kind);
+    }
+
+    [Theory]
+    [InlineData("2026-08-19T14:32:05+02:00", 12)]
+    [InlineData("2026-08-19T14:32:05-05:00", 19)]
+    [InlineData("2026-08-19T14:32:05Z", 14)]
+    public void A_timestamp_with_an_offset_comes_back_as_utc(string written, int expectedHour)
+    {
+        // Read with RoundtripKind an offset-carrying value came back as Local, i.e. shifted by the
+        // HOST's offset, and a delta sync window built from it moved with the server's time zone.
+        var row = Assert.Single(NbsCompanyAccountRow.Parse(Document(Row(updateDate: written))));
+
+        Assert.Equal(DateTimeKind.Utc, row.UpdateDate!.Value.Kind);
+        Assert.Equal(new DateTime(2026, 8, 19, expectedHour, 32, 5, DateTimeKind.Utc), row.UpdateDate);
     }
 
     [Fact]

@@ -53,9 +53,11 @@ public static class NbsSoapEnvelope
             new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
             new XElement(Soap + "Header",
                 new XElement(Nbs + "AuthenticationHeader",
-                    new XElement(Nbs + "UserName", credentials.UserName),
-                    new XElement(Nbs + "Password", credentials.Password),
-                    new XElement(Nbs + "LicenceID", credentials.LicenceId))),
+                    // Trimmed: a value pasted from a settings page or a secret store carries a
+                    // trailing newline often enough, and NBS answers it as a wrong password.
+                    new XElement(Nbs + "UserName", credentials.UserName.Trim()),
+                    new XElement(Nbs + "Password", credentials.Password.Trim()),
+                    new XElement(Nbs + "LicenceID", credentials.LicenceId.Trim()))),
             new XElement(Soap + "Body", body));
 
         return new XDocument(new XDeclaration("1.0", "utf-8", null), envelope).ToString();
