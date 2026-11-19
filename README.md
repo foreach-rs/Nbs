@@ -1,3 +1,5 @@
+> This repository is archived. Development continues in the For-Each package monorepo; version 0.1.0 remains available on nuget.org.
+
 # ForEach.Infrastructure.External.Nbs
 
 National Bank of Serbia (NBS) client: daily exchange rates and company account status over the NBS SOAP web services. Targets net8.0 and net10.0, no dependencies beyond the framework. The
